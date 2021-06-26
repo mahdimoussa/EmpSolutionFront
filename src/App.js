@@ -2,31 +2,27 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import Dashboard from "./dashboard";
-import Login from './Login';
-import Register from './Register';
-class App extends Component {
-  constructor(props) {
-    super(props);
+import Dashboard from "./components/Dashboard";
+import Login from './components/auth/Login';
+import {CustomerList} from './components/customers/customerList';
+import Register from './components/auth/Register';
+const App= () => {
     localStorage.setItem("loggedIn","False")
-  }
-  render(){
     return (
       <Router>
         <div>
-          
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
           <Switch>
           <Route path="/login">
               <Login />
             </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
+              <Route path="/customers">
+                  <CustomerList />
+              </Route>
+              <Route path="/dashboard">
+                  <Dashboard />
+              </Route>
             <Route path="/">
               <Register />
             </Route>
@@ -34,7 +30,5 @@ class App extends Component {
         </div>
       </Router>
     );
-  }
- 
 }
 export default App

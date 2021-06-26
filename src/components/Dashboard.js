@@ -5,8 +5,9 @@ import Badge from 'react-bootstrap/Badge';
 import {
     Link
 } from "react-router-dom";
-import './App.scss';
-import PaginationTableComponent from './PaginationTableComponent.js';
+import '../App.scss';
+import PaginationTableComponent from '../PaginationTableComponent.js';
+import {DashboardAppBar} from "./containers/DashboardAppBar";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -49,13 +50,8 @@ class Dashboard extends Component {
 
 render() {
     return (
-<div style={{backgroundColor:'#adb5bd'}} >
- <h2>Admin Panel</h2> 
- <nav className="btn btn-danger" style={{marginLeft:'90%',marginTop:'-37px'}}>
-       <li>
-            <Link style={{color:'#FFF'}} to="/">Logout</Link>
-        </li> 
-</nav>
+<div>
+    <DashboardAppBar/>
 
  <div>
   <h3>
@@ -75,8 +71,7 @@ render() {
   </h3>
 
 </div>
-<PaginationTableComponent data={this.state.data}/>
-</div>
+    </div>
     );
  }
 }
