@@ -1,10 +1,10 @@
 // src/components/pagination.table.js
 import React from "react";
 
-import { useTable, usePagination } from 'react-table'
+import {usePagination, useTable} from 'react-table'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Table({ columns, data }) {
+function Table({columns, data}) {
     // Use the state and functions returned from useTable to build your UI
     const {
         getTableProps,
@@ -20,12 +20,12 @@ function Table({ columns, data }) {
         nextPage,
         previousPage,
         setPageSize,
-        state: { pageIndex, pageSize },
+        state: {pageIndex, pageSize},
     } = useTable(
         {
             columns,
             data,
-            initialState: { pageIndex: 0 , pageSize: 20 },
+            initialState: {pageIndex: 0, pageSize: 20},
         },
         usePagination
     )
@@ -35,25 +35,25 @@ function Table({ columns, data }) {
         <div>
             <table className="table" {...getTableProps()}>
                 <thead>
-                    {headerGroups.map(headerGroup => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                            {headerGroup.headers.map(column => (
-                                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                            ))}
-                        </tr>
-                    ))}
+                {headerGroups.map(headerGroup => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map(column => (
+                            <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                        ))}
+                    </tr>
+                ))}
                 </thead>
                 <tbody {...getTableBodyProps()}>
-                    {page.map((row, i) => {
-                        prepareRow(row)
-                        return (
-                            <tr {...row.getRowProps()}>
-                                {row.cells.map(cell => {
-                                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                                })}
-                            </tr>
-                        )
-                    })}
+                {page.map((row, i) => {
+                    prepareRow(row)
+                    return (
+                        <tr {...row.getRowProps()}>
+                            {row.cells.map(cell => {
+                                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                            })}
+                        </tr>
+                    )
+                })}
                 </tbody>
             </table>
             {/* 
@@ -91,29 +91,29 @@ function Table({ columns, data }) {
                                 const page = e.target.value ? Number(e.target.value) - 1 : 0
                                 gotoPage(page)
                             }}
-                            style={{ width: '100px', height: '20px' }}
+                            style={{width: '100px', height: '20px'}}
                         />
                     </a>
-                </li>{' '}
+                </li>
+                {' '}
                 <select
                     className="form-control"
                     value={pageSize}
                     onChange={e => {
                         setPageSize(Number(e.target.value))
                     }}
-                    style={{ width: '120px', height: '38px' }}
+                    style={{width: '120px', height: '38px'}}
                 >
-                    {[20,40,60,80].map(pageSize => (
+                    {[20, 40, 60, 80].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>
                     ))}
                 </select>
             </ul>
-        </div >
+        </div>
     )
 }
-
 
 
 function PaginationTableComponent(props) {
@@ -129,21 +129,21 @@ function PaginationTableComponent(props) {
                     {
                         Header: 'name',
                         accessor: 'name',
-                        
+
                     },
                     {
                         Header: 'email',
                         accessor: 'email',
-                        
+
                     },
                 ],
             },
         ],
         []
     )
-    
+
     return (
-        <Table columns={columns} data={props.data} />
+        <Table columns={columns} data={props.data}/>
     )
 }
 

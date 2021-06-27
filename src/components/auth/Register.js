@@ -1,17 +1,12 @@
 import axios from 'axios';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import React, { useState} from 'react';
-import { Link } from "react-router-dom";
+import React, {useState} from 'react';
 import '../../App.scss';
 import {Avatar, Box, Button, Card, makeStyles, TextField} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import LockIcon from "@material-ui/icons/Lock";
 import {AppBarCustom} from "../containers/AppBar";
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
     hover: {
         "&:hover": {
             backgroundColor: "white !important"
@@ -74,90 +69,89 @@ const useStyles = makeStyles((theme)=>({
     },
 }));
 
-const Register = () =>{
-    const url= "http://3.22.100.202:8000/api/";
+const Register = () => {
+    const url = "http://3.22.100.202:8000/api/";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
 
-    const emailHandler = (e)=>{
+    const emailHandler = (e) => {
         setEmail(e.target.value);
     }
-    const nameHandler = (e)=>{
+    const nameHandler = (e) => {
         setName(e.target.value);
     }
-    const passwordHandler = (e)=>{
+    const passwordHandler = (e) => {
         setPassword(e.target.value);
     }
-const register = ()=>{
-    if(name !== "" && password !== "" && email !== "" ){
-        const data = {
-			name:name,
-			password:password,
-			email:email,
-            type:"User"
-		}
-		axios.post(url + "signup", data).then((response)=>{
-            if(response.data != 0){
-                setRedirect(true);
-			}
-		});
+    const register = () => {
+        if (name !== "" && password !== "" && email !== "") {
+            const data = {
+                name: name,
+                password: password,
+                email: email,
+                type: "User"
+            }
+            axios.post(url + "signup", data).then((response) => {
+                if (response.data != 0) {
+                    setRedirect(true);
+                }
+            });
+        }
     }
-  }
     let temp;
     const classes = useStyles();
-    if(redirect == false )
-    {
+    if (redirect == false) {
         temp = (<>
-            <Card className={classes.main}>
-                <AppBarCustom/>
-                <CardContent className={classes.card}>
-                    <form
-                        className={classes.form}
-                    >
-                        <Box margin="1em" display="flex" justifyContent="center">
-                            <Avatar>
-                                <LockIcon />
-                            </Avatar>
-                        </Box>
-                        <TextField
-                            className={classes.input}
-                            type="text"
-                            name="name"
-                            onChange={nameHandler}
-                            label="Name"
-                        />
-                        <TextField
-                            className={classes.input}
-                            type="email"
-                            name="email"
-                            onChange={emailHandler}
-                            label="Email"
-                        />
-                        <TextField
-                            className={classes.input}
-                            type="password"
-                            name="password"
-                            onChange={passwordHandler}
-                            label="Password"
-                        />
-                    </form>
-                    <Button
-                        onClick={register}
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        value="Verify"
-                    >
-                        Register
-                    </Button>
-                </CardContent>
-            </Card>
+                <Card className={classes.main}>
+                    <AppBarCustom/>
+                    <CardContent className={classes.card}>
+                        <form
+                            className={classes.form}
+                        >
+                            <Box margin="1em" display="flex" justifyContent="center">
+                                <Avatar>
+                                    <LockIcon/>
+                                </Avatar>
+                            </Box>
+                            <TextField
+                                className={classes.input}
+                                type="text"
+                                name="name"
+                                onChange={nameHandler}
+                                label="Name"
+                            />
+                            <TextField
+                                className={classes.input}
+                                type="email"
+                                name="email"
+                                onChange={emailHandler}
+                                label="Email"
+                            />
+                            <TextField
+                                className={classes.input}
+                                type="password"
+                                name="password"
+                                onChange={passwordHandler}
+                                label="Password"
+                            />
+                        </form>
+                        <Button
+                            onClick={register}
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            value="Verify"
+                        >
+                            Register
+                        </Button>
+                    </CardContent>
+                </Card>
             </>
         )
         ;
-    }else{
+    } else {
         temp = (<div><h1>Thank you</h1></div>);
     }
     return (

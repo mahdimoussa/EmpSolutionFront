@@ -1,25 +1,14 @@
 import axios from 'axios';
 import CardContent from "@material-ui/core/CardContent";
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import LockIcon from "@material-ui/icons/Lock";
-import { Link, Redirect } from "react-router-dom";
-import { useEffect, useState } from "react";
-import {
-    Box,
-    TextField,
-    Button,
-    Card,
-    makeStyles,
-    Avatar,
-} from "@material-ui/core";
+import {Redirect} from "react-router-dom";
+import {Avatar, Box, Button, Card, makeStyles, TextField,} from "@material-ui/core";
 import '../../App.scss';
 import {AppBarCustom} from "../containers/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
 
 
-const useStyles = makeStyles((theme)=>({
+const useStyles = makeStyles((theme) => ({
     hover: {
         "&:hover": {
             backgroundColor: "white !important"
@@ -82,76 +71,76 @@ const useStyles = makeStyles((theme)=>({
     },
 }));
 
-const Login = () =>{
-    const url= "http://3.22.100.202:8000/api/";
+const Login = () => {
+    const url = "http://3.22.100.202:8000/api/";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
 
-const emailHandler = (e)=>{
-    setEmail(e.target.value);
-}
-    const passwordHandler = (e)=>{
-        setPassword(e.target.value);
-}
-    const login = ()=>{
-    if(password !== "" && email !== "" ){
-        const data = {
-			password:password,
-			email:email,
-            type:"Admin"
-		}
-		axios.post(url + "login", data).then((response)=>{
-            if(response.data !=  null && response.data.type == "Admin"){
-            localStorage.setItem("loggedIn","True")
-                localStorage.setItem("token",response.data.access_token);
-                setRedirect(true);
-			}
-		});
+    const emailHandler = (e) => {
+        setEmail(e.target.value);
     }
-  }
+    const passwordHandler = (e) => {
+        setPassword(e.target.value);
+    }
+    const login = () => {
+        if (password !== "" && email !== "") {
+            const data = {
+                password: password,
+                email: email,
+                type: "Admin"
+            }
+            axios.post(url + "login", data).then((response) => {
+                if (response.data != null && response.data.type == "Admin") {
+                    localStorage.setItem("loggedIn", "True")
+                    localStorage.setItem("token", response.data.access_token);
+                    setRedirect(true);
+                }
+            });
+        }
+    }
     const classes = useStyles();
     if (redirect == true)
-    return <Redirect to = "/customers" />
+        return <Redirect to="/customers"/>
     return (
         <>
-        <Card className={classes.main}>
-            <AppBarCustom/>
-            <CardContent className={classes.card}>
-                <form
-                      className={classes.form}
-                >
-                    <Box margin="1em" display="flex" justifyContent="center">
-                        <Avatar>
-                            <LockIcon />
-                        </Avatar>
-                    </Box>
-                    <TextField
-                        className={classes.input}
-                        type="email"
-                        name="email"
-                        onChange={emailHandler}
-                        label="Email"
-                    />
-                    <TextField
-                        className={classes.input}
-                        type="password"
-                        name="password"
-                        onChange={passwordHandler}
-                        label="Password"
-                    />
-                </form>
-                <Button
-                    onClick={login}
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    value="Verify"
-                >
-                    signIn
-                </Button>
-            </CardContent>
-        </Card>
+            <Card className={classes.main}>
+                <AppBarCustom/>
+                <CardContent className={classes.card}>
+                    <form
+                        className={classes.form}
+                    >
+                        <Box margin="1em" display="flex" justifyContent="center">
+                            <Avatar>
+                                <LockIcon/>
+                            </Avatar>
+                        </Box>
+                        <TextField
+                            className={classes.input}
+                            type="email"
+                            name="email"
+                            onChange={emailHandler}
+                            label="Email"
+                        />
+                        <TextField
+                            className={classes.input}
+                            type="password"
+                            name="password"
+                            onChange={passwordHandler}
+                            label="Password"
+                        />
+                    </form>
+                    <Button
+                        onClick={login}
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        value="Verify"
+                    >
+                        signIn
+                    </Button>
+                </CardContent>
+            </Card>
         </>
     );
 }

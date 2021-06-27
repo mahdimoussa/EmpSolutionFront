@@ -5,7 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import {Button, makeStyles} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import React from "react";
-const useStyles = makeStyles((theme)=>({
+
+const useStyles = makeStyles((theme) => ({
     hover: {
         "&:hover": {
             backgroundColor: "white !important"
@@ -67,9 +68,9 @@ const useStyles = makeStyles((theme)=>({
         fontSize: "20px",
     },
 }));
-export const DashboardAppBar = () =>{
+export const DashboardAppBar = () => {
     const classes = useStyles();
-    return(
+    return (
         <AppBar position="static">
             <Toolbar>
                 <Button component={Link} to="/customers" color="inherit" className={classes.hover}>Customers</Button>
@@ -80,4 +81,5 @@ export const DashboardAppBar = () =>{
                 <Button component={Link} to="/login" color="inherit" className={classes.hover}>Logout</Button>
             </Toolbar>
         </AppBar>
-    )}
+    )
+}

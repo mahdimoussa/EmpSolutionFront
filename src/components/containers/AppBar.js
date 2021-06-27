@@ -5,7 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import {Button, makeStyles} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import React from "react";
-const useStyles = makeStyles((theme)=>({
+
+const useStyles = makeStyles((theme) => ({
     hover: {
         "&:hover": {
             backgroundColor: "white !important"
@@ -67,17 +68,18 @@ const useStyles = makeStyles((theme)=>({
         fontSize: "20px",
     },
 }));
-export const AppBarCustom = () =>{
+export const AppBarCustom = () => {
     const classes = useStyles();
-    return(
-    <AppBar position="static">
-    <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-        </IconButton>
-        <Typography variant="h6" className={classes.title}>
-        </Typography>
-        <Button component={Link} to="/" color="inherit" className={classes.hover}>Customer Register</Button>
-        <Button component={Link} to="/login" color="inherit" className={classes.hover}>Login</Button>
-    </Toolbar>
-</AppBar>
-    )}
+    return (
+        <AppBar position="static">
+            <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                </Typography>
+                <Button component={Link} to="/" color="inherit" className={classes.hover}>Customer Register</Button>
+                <Button component={Link} to="/login" color="inherit" className={classes.hover}>Login</Button>
+            </Toolbar>
+        </AppBar>
+    )
+}
