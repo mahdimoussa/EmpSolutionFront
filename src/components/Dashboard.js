@@ -13,7 +13,7 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            url:"http://localhost:8000/api/",     
+            url:"http://3.22.225.178/api/",
             averagelastday:0,
             averagelastweek:0,
             averagelastmonth:0,
