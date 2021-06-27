@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme)=>({
 }));
 
 const Register = () =>{
-    const url= "http://3.22.225.178/api/";
+    const url= "http://3.22.225.178:8000/api/";
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
