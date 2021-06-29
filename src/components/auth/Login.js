@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = () => {
-    const url = "http://3.22.100.202:8000/api/";
+    const url = "http://localhost:8000/api/";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [redirect, setRedirect] = useState(false);
